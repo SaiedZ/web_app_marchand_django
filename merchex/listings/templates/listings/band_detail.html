@@ -9,10 +9,11 @@
  <li>Année de formation : {{ band.year_formed }}</li>
  <li>Actif : {{ band.active|yesno }}</li>
  {%  if band.official_homepage %}
- <li>{{ band.official_homepage }}</li>
+ <li><a href="{{ band.official_homepage }}">{{ band.official_homepage }}</a></li>
  {%  endif %}
 </ul>
 
 <p>{{ band.biography }}</p>
+<a href="{% url 'band-listing' band.id %}">Accès à la liste des annonces de ce groupe</a>
 
 {% endblock %}
