@@ -1,12 +1,13 @@
-<html>
-    <head><title>Merchex</title></head>
-    <body>
-        <h1>Listings Django !</h1>
-        <p>Ma liste contient {{ listings|length }} éléments.</p>
-        <ul>
-            {% for listing in listings %}
-            <li>{{listing.title}}</li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+{% extends 'listings/base.html' %}
+
+{% block content %}
+
+<h1>Listings Django !</h1>
+<p>Ma liste contient {{ listings|length }} éléments.</p>
+<ul>
+    {% for listing in listings %}
+    <li>{{listing.title}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
