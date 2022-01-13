@@ -3,6 +3,7 @@
 {% block content %}
 
 <h1>Listings !</h1>
+<a href="{% url 'listing-create' %}">Créer une nouvelle liste</a>
 <p>Ma liste contient {{ listings|length }} éléments.</p>
 <ul>
     {% for listing in listings %}
