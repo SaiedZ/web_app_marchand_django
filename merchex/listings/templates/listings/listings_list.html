@@ -7,7 +7,7 @@
 <p>Ma liste contient {{ listings|length }} éléments.</p>
 <ul>
     {% for listing in listings %}
-    <li><a href="{% url 'listing-detail' listing.id %}">{{listing.title}}</a></li>
+    <li><a href="{% url 'listing-detail' listing.id %}">{{listing.title}}</a>  -  <a href="{% url 'listing-update' listing.id %}">[Editez]</a>  -  <a href="{% url 'listing-delete' listing.id %}">[Suppression]</a></li>
     {% endfor %}
 </ul>
 

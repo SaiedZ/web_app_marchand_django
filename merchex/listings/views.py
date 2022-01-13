@@ -109,8 +109,65 @@ def listing_create(request):
                   {'form': form})
 
 
-def band_change(request, band_id):
+def band_update(request, band_id):
     band = get_object_or_404(Band, pk=band_id)
+
+    if request.method == 'POST':
+        form = BandForm(request.POST, instance=band)
+        if form.is_valid():
+            form.save()
+            return redirect('band-detail', band.id)
+    else:
+        form = BandForm(instance=band)
+
     return render(request,
-                  'listings/band_change.html',
+                  'listings/band_update.html',
+                  {'form': form})
+
+
+def band_delete(request, band_id):
+    band = get_object_or_404(Band, pk=band_id)
+
+    if request.method == 'POST':
+        # supprimer le groupe de la base de données
+        band.delete()
+        # rediriger vers la liste des groupes
+        return redirect('band_list')
+
+    # pas besoin de « else » ici. Si c'est une demande GET, continuez simplement
+
+    return render(request,
+                  'listings/band_delete.html',
                   {'band': band})
+
+
+def listing_update(request, listing_id):
+    listing = get_object_or_404(Listing, pk=listing_id)
+
+    if request.method == 'POST':
+        form = ListingForm(request.POST, instance=listing)
+        if form.is_valid():
+            form.save()
+            return redirect('listing-detail', listing.id)
+    else:
+        form = ListingForm(instance=listing)
+
+    return render(request,
+                  'listings/listing_update.html',
+                  {'form': form})
+
+
+def listing_delete(request, listing_id):
+    listing = get_object_or_404(Listing, pk=listing_id)
+
+    if request.method == 'POST':
+        # supprimer le groupe de la base de données
+        listing.delete()
+        # rediriger vers la liste des groupes
+        return redirect('listing_list')
+
+    # pas besoin de « else » ici. Si c'est une demande GET, continuez simplement
+
+    return render(request,
+                  'listings/listing_delete.html',
+                  {'listing': listing})
